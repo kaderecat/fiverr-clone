@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [dropMenu, setDropMenu] = useState(false);
+  const { pathname } = useLocation();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -30,23 +32,25 @@ const Navbar = () => {
   return (
     <div
       className={`flex justify-center sticky top-0 ${
-        active ? "bg-white" : "bg-green-800"
+        active || pathname !== "/" ? "bg-white" : "bg-green-800"
       } flex-col items-center ease-in duration-500`}
     >
       <div className="w-[1200px] py-2  flex justify-between items-center">
         <div
           className={
-            active
+            active || pathname !== "/"
               ? "text-[36px] font-bold text-black"
               : "text-[36px] font-bold text-white"
           }
         >
-          <span>fiverr</span>
+          <Link to={"/"}>
+            <span>fiverr</span>
+          </Link>
           <span className="text-green-600">.</span>
         </div>
         <div
           className={`flex justify-center items-center ${
-            active ? "text-black" : "text-white"
+            active || pathname !== "/" ? "text-black" : "text-white"
           } gap-4 px-1 hover:cursor-pointer`}
         >
           <span>Fiverr Bussines</span>
@@ -62,7 +66,7 @@ const Navbar = () => {
           {currentUser && (
             <div
               onClick={() => isDropMenuActive()}
-              className="flex justify-center items-center gap-2 relative  duration-300"
+              className="flex justify-center items-center gap-2 relative"
             >
               <img
                 className="w-8 h-8 rounded-full object-cover"
@@ -74,26 +78,62 @@ const Navbar = () => {
                 <div className="absolute flex flex-col top-[51px] right-[-20px] rounded-md gap-1 p-5 bg-white text-gray-700 w-[225px]">
                   {currentUser?.isSeller ? (
                     <>
-                      <span>Gigs</span>
-                      <span>Add New Gig</span>
+                      <Link to={"/gigs"}>
+                        <span>Gigs</span>
+                      </Link>
+                      <Link to={"/add"}>
+                        <span>Add New Gig</span>
+                      </Link>
                     </>
                   ) : null}
-                  <span>Orders</span>
-                  <span>Messages</span>
-                  <span>Logout</span>
+                  <Link to={"/orders"}>
+                    <span>Orders</span>
+                  </Link>
+                  <Link to={"/messages"}>
+                    <span>Messages</span>
+                  </Link>
+                  <Link to={"/logout"}>
+                    <span>Logout</span>
+                  </Link>
                 </div>
               )}
             </div>
           )}
         </div>
       </div>
-      {active ? (
+      {active || pathname !== "/" ? (
         <>
           <hr className="w-[100%] h-1 " />
-          <div className="text-gray-300 bg-white flex justify-between w-[100%]">
-            <span>test</span>
-            <span>test</span>
-            <span>test </span>
+          <div className="text-gray-300 bg-white flex justify-center w-[100%] ">
+            <div className="flex justify-between w-[1200px]">
+            <Link to={"/"}>
+              <span>Graphics & Design</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Video & Animation</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Writing & Translation</span>
+            </Link>
+            <Link to={"/"}>
+              <span>AI Services</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Digital Marketing</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Music & Audio</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Programming & Tech</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Business</span>
+            </Link>
+            <Link to={"/"}>
+              <span>Lifestyle</span>
+            </Link>
+            </div>
           </div>
         </>
       ) : (
