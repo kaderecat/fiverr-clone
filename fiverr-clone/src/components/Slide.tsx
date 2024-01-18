@@ -1,11 +1,17 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 import Slider from "infinite-react-carousel";
-const Slide = ({children , slidesToShow , arrowsScroll}) => {
+
+interface SliderProps extends PropsWithChildren {
+  slidesToShow: number;
+  arrowsScroll: number;
+}
+
+const Slide = ({ children, slidesToShow, arrowsScroll }: SliderProps) => {
   return (
-    <div>
-      <div>
+    <div className="flex justify-center items-center py-[100px]">
+      <div className="w-[1200px] ">
         <Slider dots slidesToShow={slidesToShow} arrowsScroll={arrowsScroll}>
-        {children}
+          {children}
         </Slider>
       </div>
     </div>

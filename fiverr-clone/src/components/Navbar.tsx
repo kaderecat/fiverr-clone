@@ -104,7 +104,7 @@ const Navbar = () => {
       {active || pathname !== "/" ? (
         <>
           <hr className="w-[100%] h-1 " />
-          <div className="text-gray-300 bg-white flex justify-center w-[100%] ">
+          <div className="text-gray-500 bg-white flex justify-center w-[100%] ">
             <div className="flex justify-between w-[1200px]">
             <Link to={"/"}>
               <span>Graphics & Design</span>
