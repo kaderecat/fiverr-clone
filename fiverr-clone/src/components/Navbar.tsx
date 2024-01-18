@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -106,33 +106,33 @@ const Navbar = () => {
           <hr className="w-[100%] h-1 " />
           <div className="text-gray-500 bg-white flex justify-center w-[100%] ">
             <div className="flex justify-between w-[1200px]">
-            <Link to={"/"}>
-              <span>Graphics & Design</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Video & Animation</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Writing & Translation</span>
-            </Link>
-            <Link to={"/"}>
-              <span>AI Services</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Digital Marketing</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Music & Audio</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Programming & Tech</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Business</span>
-            </Link>
-            <Link to={"/"}>
-              <span>Lifestyle</span>
-            </Link>
+              <Link to={"/"}>
+                <span>Graphics & Design</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Video & Animation</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Writing & Translation</span>
+              </Link>
+              <Link to={"/"}>
+                <span>AI Services</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Digital Marketing</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Music & Audio</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Programming & Tech</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Business</span>
+              </Link>
+              <Link to={"/"}>
+                <span>Lifestyle</span>
+              </Link>
             </div>
           </div>
         </>
