@@ -2,7 +2,7 @@ import React from "react";
 
 const Featured = () => {
   return (
-    <div className="flex justify-center bg-green-900 text-white">
+    <div className="flex justify-center bg-green-900 text-white h-[100vh]">
       <div className="w-[1200px] flex justify-center ">
         <div className="flex flex-col justify-center gap-3 ">
           <h1 className="text-5xl font-bold text-">
