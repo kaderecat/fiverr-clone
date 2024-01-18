@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Card as CardModel } from "../types/Card";
 
 interface CardProps {
-  cards: CardModel;
+  cards: CardModel,
+  
 }
 
 const CatCard = ({ cards }: CardProps) => {

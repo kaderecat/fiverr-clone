@@ -1,9 +1,12 @@
 import Featured from "../../components/Featured";
 import TrustedBy from "../../components/TrustedBy";
 import Slide from "../../components/Slide";
-import { cards } from "../../data.js";
+import { cards } from "../../data.ts";
 import CatCard from "../../components/CatCard";
 import { Card } from "../../types/Card.js";
+import { projects } from "../../data.ts";
+import { Project } from "../../types/Projects.js";
+import ProjectCard from "../../components/ProjectCard.tsx";
 
 const Home = () => {
   return (
@@ -124,7 +127,9 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-white text-gray-500 p-2 rounded-md mt-3 text-center font-bold hover:text-gray-700">Learn more</button>
+            <button className="bg-white text-gray-500 p-2 rounded-md mt-3 text-center font-bold hover:text-gray-700">
+              Learn more
+            </button>
           </div>
           <div className="w-[50%] flex flex-col justify-center items-center p-5">
             <img
@@ -134,6 +139,18 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="flex justify-center mt-[100px]">
+        <div className="w-[1200px] flex justify-start">
+          <h1 className="font-semibold text-gray-800 text-3xl">
+            Inspiring work made on Fiverr
+          </h1>
+        </div>
+      </div>
+      <Slide slidesToShow={4} arrowsScroll={4}>
+        {projects.map((items: Project) => (
+          <ProjectCard projects={items} key={items.id} />
+        ))}
+      </Slide>
     </div>
   );
 };

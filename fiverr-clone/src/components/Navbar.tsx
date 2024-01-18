@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex justify-center sticky top-0 ${
+      className={`flex justify-center sticky top-0 z-[99] ${
         active || pathname !== "/" ? "bg-white" : "bg-green-900"
       } flex-col items-center ease-in duration-500`}
     >
