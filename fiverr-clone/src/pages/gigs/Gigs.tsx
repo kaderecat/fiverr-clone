@@ -7,14 +7,14 @@ const Gigs = () => {
   const [sort, setSort] = useState("sales");
 
   const handleSalesSort = () => {
-    setSort('sales');
-    setOpen(false)
-  }
+    setSort("sales");
+    setOpen(false);
+  };
 
   const handleTimedSort = () => {
-    setSort('createdAt');
-    setOpen(false)
-  }
+    setSort("createdAt");
+    setOpen(false);
+  };
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
@@ -25,7 +25,7 @@ const Gigs = () => {
       <div className="w-[1200px]  flex flex-wrap gap-12">
         <div className="mt-10">
           <div className="text-gray-500 text-[12px] flex flex-col gap-2 mb-5">
-            <span>FIVERR / GRAPHICS & DESIGN</span>
+            <span>FIVERR - GRAPHICS & DESIGN </span>
             <p className="text-black text-3xl font-bold">AI Artists</p>
             <p>
               Explore the boundaries of art and technology with Fiverr's AI
@@ -61,7 +61,7 @@ const Gigs = () => {
                 </span>
                 <div className="relative">
                   <img
-                    onClick={(handleOpen)}
+                    onClick={handleOpen}
                     className="w-5"
                     src="down.png"
                     alt=""

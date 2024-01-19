@@ -36,7 +36,7 @@ function App() {
           element: <Gigs />,
         },
         {
-          path: "/gig:id",
+          path: "/gig/:id",
           element: <Gig />,
         },
         {
@@ -47,7 +47,7 @@ function App() {
           path: "/orders",
           element: <Orders />,
         },
-         {
+        {
           path: "/myGigs",
           element: <MyGigs />,
         },
