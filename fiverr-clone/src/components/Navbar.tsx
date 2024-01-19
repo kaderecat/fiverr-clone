@@ -78,7 +78,7 @@ const Navbar = () => {
                 <div className="absolute flex flex-col top-[51px] right-[-20px] rounded-md gap-1 p-5 bg-white text-gray-700 w-[225px]">
                   {currentUser?.isSeller ? (
                     <>
-                      <Link to={"/gigs"}>
+                      <Link to={"/mygigs"}>
                         <span>Gigs</span>
                       </Link>
                       <Link to={"/add"}>
