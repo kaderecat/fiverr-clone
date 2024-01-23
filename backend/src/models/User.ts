@@ -1,6 +1,6 @@
 import { InferSchemaType, Schema, model } from "mongoose";
-
-const userSchema = new Schema(
+import { UserInterface } from "../interfaces/User";
+const userSchema = new Schema<UserInterface>(
   {
     username: {
       type: String,
@@ -12,6 +12,8 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      required: true,
+
     },
     img: {
       type: String,
@@ -27,8 +29,9 @@ const userSchema = new Schema(
     },
     isSeller: {
       type: Boolean,
-      default : false
+      default: false,
     },
+   
   },
   {
     timestamps: true,
