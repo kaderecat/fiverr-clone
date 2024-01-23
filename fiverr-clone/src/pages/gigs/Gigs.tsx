@@ -67,9 +67,9 @@ const Gigs = () => {
                     alt=""
                   />
                   {open && (
-                    <div className=" absolute bg-white w-[120px] border-2 p-2">
-                      <p onClick={handleSalesSort}>Best Selling</p>
-                      <p onClick={handleTimedSort}>Newest</p>
+                    <div className=" absolute bg-white w-[120px] border-2  cursor-pointer ">
+                      <p onClick={handleSalesSort} className="hover:bg-gray-300 p-1">Best Selling</p>
+                      <p onClick={handleTimedSort} className="hover:bg-gray-300 p-1 ">Newest</p>
                     </div>
                   )}
                 </div>
