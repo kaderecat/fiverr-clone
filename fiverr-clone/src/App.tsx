@@ -10,6 +10,7 @@ import { Orders } from "./pages/orders/Orders";
 import MyGigs from "./pages/myGigs/MyGigs";
 import Messages from "./pages/messages/Messages";
 import SingleMessage from "./pages/singleMassage/SingleMessage";
+import Login from "./pages/login/Login";
 
 function App() {
   const Layout = () => {
@@ -34,6 +35,10 @@ function App() {
         {
           path: "/gigs",
           element: <Gigs />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
         {
           path: "/gig/:id",
