@@ -9,7 +9,7 @@ const Login = () => {
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: Event) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
