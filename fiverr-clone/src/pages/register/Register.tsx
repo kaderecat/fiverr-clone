@@ -4,6 +4,8 @@ import upload from "../../utils/upload";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
 
+
+
 export const Register = () => {
   const [user, setUser] = useState({
     username: "",
@@ -17,7 +19,6 @@ export const Register = () => {
   });
 
   const navigate = useNavigate();
-  console.log(user);
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -26,6 +27,13 @@ export const Register = () => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+
+  const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
 
   const handleSeller = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prev) => {
@@ -47,7 +55,7 @@ export const Register = () => {
   };
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files[0]);
+    e.target.files instanceof FileList ? setFile(e.target.files[0]) : null;
   };
 
   return (
@@ -147,7 +155,7 @@ export const Register = () => {
             id=""
             cols={30}
             rows={10}
-            onChange={handleChange}
+            onChange={(handleChangeTextArea)}
           ></textarea>
         </div>
       </form>
