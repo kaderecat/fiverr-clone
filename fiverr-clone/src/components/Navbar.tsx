@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import newRequest from "../utils/newRequest";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [dropMenu, setDropMenu] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -23,10 +25,18 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    username: "kaderecat",
-    isSeller: true,
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")!);
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("auth/logout");
+
+      localStorage.clear();
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,12 +66,18 @@ const Navbar = () => {
           <span>Fiverr Bussines</span>
           <span>Explore</span>
           <span>English</span>
-          {!currentUser && <span>Sing in</span>}
+          {!currentUser && (
+            <Link to={"/login"}>
+              <span>Sing in</span>
+            </Link>
+          )}
           {!currentUser?.isSeller && <span>Become a Seller</span>}
           {!currentUser && (
-            <button className="border px-4 py-1 rounded-md hover:bg-green-500 transition-all ease-in-out duration-300 hover:border-green-500">
-              Join
-            </button>
+            <Link to={'/register'}>
+              <button className="border px-4 py-1 rounded-md hover:bg-green-500 transition-all ease-in-out duration-300 hover:border-green-500">
+                Join
+              </button>
+            </Link>
           )}
           {currentUser && (
             <div
@@ -70,7 +86,7 @@ const Navbar = () => {
             >
               <img
                 className="w-8 h-8 rounded-full object-cover"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+                src={currentUser.img || "../public/noavatar.jpg"}
                 alt=""
               />
               <span>{currentUser.username}</span>
@@ -92,9 +108,8 @@ const Navbar = () => {
                   <Link to={"/messages"}>
                     <span>Messages</span>
                   </Link>
-                  <Link to={"/logout"}>
-                    <span>Logout</span>
-                  </Link>
+
+                  <span onClick={handleLogout}>Logout</span>
                 </div>
               )}
             </div>
