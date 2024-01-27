@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/");
     } catch (error) {
-      
+      //@ts-expect-error err
       setErr(error.response.data);
     }
   };

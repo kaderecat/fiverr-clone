@@ -22,19 +22,13 @@ export const Register = () => {
 
   const [file, setFile] = useState<File | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
 
-  const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setUser((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-  };
-
-
+ 
   const handleSeller = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prev) => {
       return { ...prev, isSeller: e.target.checked };
@@ -155,7 +149,7 @@ export const Register = () => {
             id=""
             cols={30}
             rows={10}
-            onChange={(handleChangeTextArea)}
+            onChange={(handleChange)}
           ></textarea>
         </div>
       </form>
