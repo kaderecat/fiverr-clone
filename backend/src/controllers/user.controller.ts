@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { RequestHandler } from "express";
 import User from "../models/User";
 import env from "../utils/envValidate";
@@ -9,8 +10,9 @@ export const deleteFn: RequestHandler = async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
     if (!token) return res.status(401).send("You are not authenticated!");
-
-    jwt.verify(token, env.JWT_KEY, async (err: any, payload: any) => {
+//@ts-ignore
+    jwt.verify(token, env.JWT_KEY, async (err, payload) => {
+      //@ts-ignore
       if (payload.id !== user?._id.toString()) {
         return res.status(403).send("You can delete only your account!");
       }
