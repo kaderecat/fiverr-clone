@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState } from "react";
 import "./register.css";
 import upload from "../../utils/upload";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
-
-
 
 export const Register = () => {
   const [user, setUser] = useState({
@@ -22,13 +21,14 @@ export const Register = () => {
 
   const [file, setFile] = useState<File | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
 
- 
   const handleSeller = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prev) => {
       return { ...prev, isSeller: e.target.checked };
@@ -37,7 +37,7 @@ export const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    //@ts-ignore
     const url = await upload(file);
 
     try {
@@ -149,7 +149,7 @@ export const Register = () => {
             id=""
             cols={30}
             rows={10}
-            onChange={(handleChange)}
+            onChange={handleChange}
           ></textarea>
         </div>
       </form>

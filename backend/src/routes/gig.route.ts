@@ -1,11 +1,17 @@
 import { Router } from "express";
-import { createGig, deleteGig, getGig, getGigs } from "../controllers/gig.controller";
+import {
+  createGig,
+  deleteGig,
+  getGig,
+  getGigs,
+} from "../controllers/gig.controller";
+import { auth } from "../middlewares/verifyToken";
 
 const router = Router();
 
-router.post('/' , createGig)
-router.delete('/:id' , deleteGig)
-router.get('/single/:id' , getGig)
-router.get('/' , getGigs)
+router.post("/", auth, createGig);
+router.delete("/:id", auth, deleteGig);
+router.get("/single/:id", getGig);
+router.get("/", getGigs);
 
 export default router;

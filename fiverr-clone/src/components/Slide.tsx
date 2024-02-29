@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
 import Slider from "infinite-react-carousel";
 
-interface SliderProps extends PropsWithChildren {
+interface SliderProps  {
+  children? : React.ReactNode | React.ReactNode[]
   slidesToShow: number;
   arrowsScroll: number;
 }

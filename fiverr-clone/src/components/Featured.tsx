@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Featured = () => {
+  const [input, setInput] = useState("");
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate(`/gigs?search=${input}`);
+  };
+
   return (
     <div className="flex justify-center bg-green-900 text-white h-[100vh]">
       <div className="w-[1200px] flex justify-center ">
@@ -16,18 +23,30 @@ const Featured = () => {
                 className="outline-none border-none text-black w-[100%]"
                 type="text"
                 placeholder='Try "building mobile app"'
+                onChange={(e) => setInput(e.target.value)}
               />
             </div>
-            <button className="border-none rounded-r-md w-[100px] h-[50px] bg-green-600 cursor-pointer ">
+            <button
+              onClick={handleSearch}
+              className="border-none rounded-r-md w-[100px] h-[50px] bg-green-600 cursor-pointer "
+            >
               Search
             </button>
           </div>
           <div className="flex justify-start items-center gap-2">
             <span>Popular:</span>
-            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">Web Design</button>
-            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">WordPress</button>
-            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">Logo Design</button>
-            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">AI Services</button>
+            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">
+              Web Design
+            </button>
+            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">
+              WordPress
+            </button>
+            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">
+              Logo Design
+            </button>
+            <button className="border-2 rounded-xl px-2 py-[1px] cursor-pointer ">
+              AI Services
+            </button>
           </div>
         </div>
         <div>

@@ -16,7 +16,7 @@ const Home = () => {
       <Slide arrowsScroll={4} slidesToShow={4}>
         {cards.map((items: Card) => (
           <CatCard cards={items} key={items.id} />
-        ))}{" "}
+        ))}
       </Slide>
       <div className="flex justify-center bg-gray-50 pb-[100px]">
         <div className="w-[1200px] flex">

@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GigCard from "../../components/GigCard";
-import { gigs } from "../../data";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { Gigs as gigsType } from "../../types/Gigs";
+import { useLocation } from "react-router-dom";
 
 const Gigs = () => {
   const [open, setOpen] = useState(false);
   const [sort, setSort] = useState("sales");
+
+  const minRef = useRef<HTMLInputElement>(null);
+  const maxRef = useRef<HTMLInputElement>(null);
+
+  const { search } = useLocation();
+
+  const { isPending, error, data, refetch } = useQuery({
+    queryKey: ["gigs"],
+    queryFn: () =>
+      newRequest.get(
+        `/gigs${search}&min=${minRef.current?.value}&max=${maxRef.current?.value}&sort=${sort}`
+      ),
+  });
+
+  useEffect(() => {
+    refetch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
 
   const handleSalesSort = () => {
     setSort("sales");
@@ -18,6 +39,10 @@ const Gigs = () => {
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
+  };
+
+  const apply = () => {
+    refetch();
   };
 
   return (
@@ -37,19 +62,20 @@ const Gigs = () => {
               <span>Budget</span>
               <input
                 className="border-2 pl-2"
-                type="text"
+                type="number"
                 placeholder="min"
-                name=""
-                id=""
+                ref={minRef}
               />
               <input
                 className="border-2 pl-2"
-                type="text"
+                type="number"
                 placeholder="max"
-                name=""
-                id=""
+                ref={maxRef}
               />
-              <button className="bg-green-600 text-white text-[12px] p-1 rounded-lg w-12 font-semibold">
+              <button
+                onClick={apply}
+                className="bg-green-600 text-white text-[12px] p-1 rounded-lg w-12 font-semibold"
+              >
                 Apply
               </button>
             </div>
@@ -68,8 +94,18 @@ const Gigs = () => {
                   />
                   {open && (
                     <div className=" absolute bg-white w-[120px] border-2  cursor-pointer ">
-                      <p onClick={handleSalesSort} className="hover:bg-gray-300 p-1">Best Selling</p>
-                      <p onClick={handleTimedSort} className="hover:bg-gray-300 p-1 ">Newest</p>
+                      <p
+                        onClick={handleSalesSort}
+                        className="hover:bg-gray-300 p-1"
+                      >
+                        Best Selling
+                      </p>
+                      <p
+                        onClick={handleTimedSort}
+                        className="hover:bg-gray-300 p-1 "
+                      >
+                        Newest
+                      </p>
                     </div>
                   )}
                 </div>
@@ -78,8 +114,10 @@ const Gigs = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-12">
-          {gigs.map((item) => (
-            <GigCard gigs={item} key={item.id} />
+          {isPending && <div>Loading..</div>}
+          {error && <div>{error.message}</div>}
+          {data?.data.map((item: gigsType) => (
+            <GigCard gigs={item} key={item._id} />
           ))}
         </div>
       </div>

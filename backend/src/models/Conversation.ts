@@ -4,7 +4,6 @@ const conversationSchema = new Schema(
   {
     id: {
       type: String,
-      required: true,
     },
     buyerId: {
       type: String,
@@ -19,7 +18,7 @@ const conversationSchema = new Schema(
       required: true,
     },
     readBySeller: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     lastMessage: {

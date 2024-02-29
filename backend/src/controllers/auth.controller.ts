@@ -90,6 +90,7 @@ export const login: RequestHandler<
       env.JWT_KEY
     );
 
+
     const { password, ...info } = user._doc;
 
     res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
@@ -99,7 +100,6 @@ export const login: RequestHandler<
 };
 
 export const logout: RequestHandler = async (req, res, next) => {
-  // eslint-disable-next-line no-empty
   try {
     res
       .clearCookie("accessToken", { sameSite: "none", secure: true })

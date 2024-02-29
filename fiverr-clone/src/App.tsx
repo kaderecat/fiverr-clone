@@ -12,14 +12,21 @@ import Messages from "./pages/messages/Messages";
 import SingleMessage from "./pages/singleMassage/SingleMessage";
 import Login from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Pay from "./pages/pay/Pay";
+import Succes from "./pages/success/Succes";
+
+const queryClient = new QueryClient();
 
 function App() {
   const Layout = () => {
     return (
       <>
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </QueryClientProvider>
       </>
     );
   };
@@ -50,7 +57,7 @@ function App() {
           element: <Gig />,
         },
         {
-          path: "/Add",
+          path: "/add",
           element: <Add />,
         },
         {
@@ -68,6 +75,14 @@ function App() {
         {
           path: "/message/:id",
           element: <SingleMessage />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Pay />,
+        },
+        {
+          path: "/success",
+          element: <Succes />,
         },
       ],
     },
