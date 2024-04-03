@@ -4,7 +4,7 @@ import Conversation from "../models/Conversation";
 
 export const getMessages: RequestHandler = async (req, res, next) => {
   try {
-    const messages = await Message.find({ id: req.body.conversationId });
+    const messages = await Message.find({ conversationId: req.params.id });
 
     res.status(201).send(messages);
   } catch (error) {

@@ -36,7 +36,7 @@ const MyGigs = () => {
       <div className="w-[1200px] my-[20px]">
         <div className="flex justify-between mb-[20px]">
           <h1 className="text-3xl font-bold">Gigs</h1>
-          <Link to={"/add"}>
+          <Link to={"/api/gigs/add"}>
             <button className="bg-green-500 text-white p-2 rounded-md font-semibold">
               Add New Gig
             </button>

@@ -8,7 +8,7 @@ interface CardProps {
 
 const CatCard = ({ cards }: CardProps) => {
   return (
-    <Link to={'/gigs?cat=design'}>
+    <Link to={'/gigs'}>
       <div className="w-[252px] h-[344px] rounded-md text-white">
         <div className="relative h-[100%]">
           <img

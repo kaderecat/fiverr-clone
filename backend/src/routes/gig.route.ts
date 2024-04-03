@@ -9,7 +9,7 @@ import { auth } from "../middlewares/verifyToken";
 
 const router = Router();
 
-router.post("/", auth, createGig);
+router.post("/add", auth, createGig);
 router.delete("/:id", auth, deleteGig);
 router.get("/single/:id", getGig);
 router.get("/", getGigs);

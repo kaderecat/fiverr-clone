@@ -17,6 +17,8 @@ const SingleMessage = () => {
 
   const { id } = useParams();
 
+  console.log(id);
+  
   const { isPending, error, data } = useQuery({
     queryKey: ["messages"],
     queryFn: () =>

@@ -37,6 +37,7 @@ export const Orders = () => {
 
     try {
       const res = await newRequest.get(`/conversations/${id}`);
+
       navigate(`/message/${res.data.id}`);
     } catch (error: any) {
       console.log(error);
@@ -62,8 +63,7 @@ export const Orders = () => {
               <th>Image</th>
               <th>Title</th>
               <th>Price</th>
-              <th>{currentUser.isSeller ? "Buyer" : "Seller"}</th>
-              <th>Contact</th>
+              <th>{currentUser.isSeller ? "Buyer" : "Seller"} Contact</th>
             </tr>
           </thead>
           <tbody>
@@ -78,7 +78,6 @@ export const Orders = () => {
                     </td>
                     <td>{order.title}</td>
                     <td>{order.price}</td>
-                    <td>John Doe</td>
                     <td>
                       <img
                         className="w-5 cursor-pointer"

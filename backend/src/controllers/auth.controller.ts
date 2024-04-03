@@ -43,7 +43,7 @@ export const register: RequestHandler<
       );
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
+    const hashedPassword = bcrypt.hash(password, 10);
     const newUser = new User({
       ...req.body,
       password: hashedPassword,

@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 const Gigs = () => {
   const [open, setOpen] = useState(false);
   const [sort, setSort] = useState("sales");
+  const [cat, setCat] = useState("");
 
   const minRef = useRef<HTMLInputElement>(null);
   const maxRef = useRef<HTMLInputElement>(null);
@@ -17,14 +18,18 @@ const Gigs = () => {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
     queryFn: () =>
-      newRequest.get(
-        `/gigs${search}&min=${minRef.current?.value}&max=${maxRef.current?.value}&sort=${sort}`
-      ),
+      newRequest
+        .get(
+          `/gigs?cat=${cat}&${search}&min=${minRef.current?.value}&max=${maxRef.current?.value}&sort=${sort}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
   });
 
   useEffect(() => {
     refetch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort]);
 
   const handleSalesSort = () => {
@@ -59,6 +64,14 @@ const Gigs = () => {
           </div>
           <div className="w-[1200px] flex justify-between items-center">
             <div className="flex gap-2">
+              <span>Budget</span>
+
+              <input
+                onChange={(e) => setCat(e.target.value)}
+                className="border-2 pl-2"
+                placeholder="Category"
+                type="text "
+              ></input>
               <span>Budget</span>
               <input
                 className="border-2 pl-2"
@@ -116,7 +129,7 @@ const Gigs = () => {
         <div className="flex flex-wrap gap-12">
           {isPending && <div>Loading..</div>}
           {error && <div>{error.message}</div>}
-          {data?.data.map((item: gigsType) => (
+          {data?.map((item: gigsType) => (
             <GigCard gigs={item} key={item._id} />
           ))}
         </div>

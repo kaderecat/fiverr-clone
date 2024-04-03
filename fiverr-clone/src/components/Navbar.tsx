@@ -64,7 +64,10 @@ const Navbar = () => {
           } gap-4 px-1 hover:cursor-pointer`}
         >
           <span>Fiverr Bussines</span>
-          <span>Explore</span>
+
+          <Link to={"/gigs"}>
+            <span>Explore</span>
+          </Link>
           <span>English</span>
           {!currentUser && (
             <Link to={"/login"}>
@@ -73,7 +76,7 @@ const Navbar = () => {
           )}
           {!currentUser?.isSeller && <span>Become a Seller</span>}
           {!currentUser && (
-            <Link to={'/register'}>
+            <Link to={"/register"}>
               <button className="border px-4 py-1 rounded-md hover:bg-green-500 transition-all ease-in-out duration-300 hover:border-green-500">
                 Join
               </button>
@@ -97,7 +100,7 @@ const Navbar = () => {
                       <Link to={"/mygigs"}>
                         <span>Gigs</span>
                       </Link>
-                      <Link to={"/add"}>
+                      <Link to={"/api/gigs/add"}>
                         <span>Add New Gig</span>
                       </Link>
                     </>

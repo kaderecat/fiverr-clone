@@ -57,7 +57,7 @@ function App() {
           element: <Gig />,
         },
         {
-          path: "/add",
+          path: "api/gigs/add",
           element: <Add />,
         },
         {

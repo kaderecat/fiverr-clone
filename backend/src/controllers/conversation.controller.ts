@@ -13,7 +13,7 @@ export const getConversations = async (
       req.token.isSeller
         ? { sellerId: req.token.id }
         : { buyerId: req.token.id }
-    ).sort({updatedAt : -1});
+    ).sort({ updatedAt: -1 });
     res.status(200).send(singleConv);
   } catch (error) {
     next(error);
@@ -49,7 +49,7 @@ export const SingleConversation = async (
 ) => {
   try {
     const convers = await Conversation.findOne({ id: req.params.id });
-    if (!convers) return createHttpError(404, "Not found");
+    if (!convers) throw createHttpError(404, "Not found");
     res.status(200).send(convers);
   } catch (error) {
     next(error);

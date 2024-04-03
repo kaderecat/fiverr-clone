@@ -4,12 +4,14 @@ import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import upload from "../../utils/upload";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
   const handleChange = (e: React.ChangeEvent) => {
@@ -53,8 +55,7 @@ const Add = () => {
 
   const mutation = useMutation({
     mutationFn: (gig) => {
-      
-      return newRequest.post("/gigs", gig);
+      return newRequest.post("/gigs/add", gig);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myGigs"] });
@@ -63,10 +64,11 @@ const Add = () => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    
+
     console.log(state);
-    
+
     mutation.mutate(state);
+    navigate("/gigs");
   };
 
   return (
@@ -94,7 +96,7 @@ const Add = () => {
               className="p-2 border-gray-200 border-[2px] rounded-md"
               name="cat"
               onChange={handleChange}
-              id=""
+              defaultValue={"music"}
             >
               <option value="music">Music</option>
               <option value="design">Desing</option>

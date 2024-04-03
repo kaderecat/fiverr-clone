@@ -42,10 +42,9 @@ export const getOrders = async (
       ...(req.token.isSeller
         ? { sellerId: req.token.id }
         : { buyerId: req.token.id }),
-      isCompleted: false,
+      isCompleted: true,
     });
 
-    console.log(orders);
 
     res.status(200).send(orders);
   } catch (error) {
